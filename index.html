@@ -9,9 +9,9 @@
 <script>
 d3.csv('https://flunky.github.io/cars2017.csv', function (data) {
 
-var margin = { top: 50, right: 50, bottom: 50, left: 50 }
-var h = 300 - margin.top - margin.bottom
-var w = 300 - margin.left - margin.right
+var margin = { top: 1500, right: 1500, bottom: 1500, left: 1500 }
+var h = 30000 - margin.top - margin.bottom
+var w = 30000 - margin.left - margin.right
 
 // X range
 var x = d3.scaleLog().domain([10, 150]).range([0, 200]);
