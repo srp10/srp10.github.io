@@ -7,42 +7,48 @@
 <p>I'm starting this index page</p>
 <p>I'm starting this index page</p>
 <script>
-d3.csv('https://flunky.github.io/cars2017.csv', function (data) {
+var dataset = [ 5, 10, 20, 20, 6, 25 ];
 
-var margin = { top: 1500, right: 1500, bottom: 1500, left: 1500 }
-var h = 30000 - margin.top - margin.bottom
-var w = 30000 - margin.left - margin.right
+var w = 500;
+var h = 500;
 
-// X range
-var x = d3.scaleLog().domain([10, 150]).range([0, 200]);
-// Y range
-var y = d3.scaleLog().domain([10, 150]).range([200, 0]);
+var svg = d3.select("#draw_here")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
 
+var outerRadius = w / 2;
+var innerRadius = w / 4;
 
-// Add X axes
-d3.select("svg").append("g")
-           .attr("transform", "translate(" + margin.left + "," + 250 + ")")
-            .call(d3.axisBottom(x)
-                    .tickValues([10,20,50,100])  
-                    .tickFormat(d3.format("~s"))
-                    );
-// Add Y axes
-d3.select("svg").append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-            .call(d3.axisLeft(y)
-                    .tickValues([10,20,50,100])
-                    .tickFormat(d3.format("~s"))
-                    );
+var arc = d3.svg.arc()
+        .innerRadius(innerRadius)
+        .outerRadius(outerRadius);
 
-// Circles
-  var circles = svg.selectAll('circle')
-      .data(data)
-      .enter()
-    .append('circle')
-      .attr('cx',function (d) { return x(d.AverageCityMPG) })
-      .attr('cy',function (d) { return y(d.AverageHighwayMPG) })
-      .attr(('r',(d.EngineCylinders)+2));
-  })
+var pie = d3.layout.pie();
+
+var color = d3.scale.category10();
+
+var arcs = svg.selectAll("g.arc")
+        .data(pie(dataset))
+        .enter()
+        .append("g")
+        .attr("class", "arc")
+        .attr("transform", "translate("+ outerRadius + ", " + outerRadius +")");
+
+arcs.append("path")
+        .attr("fill", function(d, i) {
+            return color(i)
+        })
+        .attr("d", arc);
+
+arcs.append("text")
+        .attr("transform", function(d) {
+            return "translate(" + arc.centroid(d) + ")";
+        })
+        .attr("text-anchor", "middle")
+        .text(function(d) {
+            return d.value;
+        });
 </script>
 <p>I'm starting this index page - the end</p>
 </body>
