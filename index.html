@@ -20,7 +20,7 @@ var y = d3.scaleLog().domain([10, 150]).range([200, 0]);
 
 // Add X axes
 var xAxis = d3.select("svg").append("g")
-           .attr("transform", "translate(" + margin.left + "," + 250 + ")")
+           .attr("transform", "translate(" + margin.left + "," + 300 - margin.top + ")")
             .call(d3.axisBottom(x)
                     .tickValues([10,20,50,100])  
                     .tickFormat(d3.format("~s"))
