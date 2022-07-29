@@ -73,8 +73,7 @@ let drawPoints = () => {
                     .style('visibility', 'visible')
                 
                 tooltip.text(item['Make'] + ' - ' + item['Fuel'] + ' - ' + item['EngineCylinders'])
-                
-                tooltip.attr('AverageHighwayMPG', item['AverageHighwayMPG'])
+            
             })
             .on('mouseout', (item) => {
                 tooltip.transition()
