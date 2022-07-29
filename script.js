@@ -1,4 +1,4 @@
-let url = 'https://github.com/srp10/srp10.github.io/blob/main/cars2017.json'
+let url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json'
 let req = new XMLHttpRequest()
 
 let values =[]
@@ -18,19 +18,19 @@ let tooltip = d3.select('#tooltip')
 
 let generateScales = () => {
     
-    xScale = d3.scaleLog()
+    xScale = d3.scaleLinear()
                         .domain([d3.min(values, (item) => {
-                            return item['AverageCityMPG']
+                            return item['Year']
                         }) - 1 , d3.max(values, (item) => {
-                            return item['AverageCityMPG']
+                            return item['Year']
                         }) + 1])
                         .range([padding, width-padding])
 
     yScale = d3.scaleTime()
                         .domain([d3.min(values, (item) => {
-                            return item['AverageHighwayMPG']
+                            return new Date(item['Seconds'] * 1000)
                         }), d3.max(values, (item) => {
-                            return item['AverageHighwayMPG']
+                            return new Date(item['Seconds'] * 1000)
                         })])
                         .range([padding, height-padding])
 
@@ -50,16 +50,16 @@ let drawPoints = () => {
             .attr('class', 'dot')
             .attr('r', '5')
             .attr('data-xvalue', (item) => {
-                return item['AverageCityMPG']
+                return item['Year']
             })
             .attr('data-yvalue', (item) => {
-                return item['AverageHighwayMPG']
+                return new Date(item['Seconds'] * 1000)
             })
           .attr('cx', (item) => {
-              return xScale(item['AverageCityMPG'])
+              return xScale(item['Year'])
           })         
             .attr('cy', (item) => {
-                return yScale(item['AverageHighwayMPG'])
+                return yScale(new Date(item['Seconds'] * 1000))
             })
             .attr('fill', (item) => {
                 if(item['URL'] === ""){
@@ -89,11 +89,11 @@ let drawPoints = () => {
 let generateAxes = () => {
 
     xAxis = d3.axisBottom(xScale)
-                .tickFormat(d3.format("~s"))
+                .tickFormat(d3.format('d'))
                 
 
     yAxis = d3.axisLeft(yScale)
-                .tickFormat(d3.format("~s"))
+                .tickFormat(d3.timeFormat('%M:%S'))
 
 
     svg.append('g')
