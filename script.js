@@ -1,4 +1,4 @@
-let url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json'
+let url = 'https://github.com/srp10/srp10.github.io/blob/main/cars2017.json'
 let req = new XMLHttpRequest()
 
 let values =[]
@@ -20,17 +20,17 @@ let generateScales = () => {
     
     xScale = d3.scaleLog()
                         .domain([d3.min(values, (item) => {
-                            return item['Year']
+                            return item['AverageCityMPG']
                         }) - 1 , d3.max(values, (item) => {
-                            return item['Year']
+                            return item['AverageCityMPG']
                         }) + 1])
                         .range([padding, width-padding])
 
     yScale = d3.scaleLog()
                         .domain([d3.min(values, (item) => {
-                            return item['Year']
+                            return item['AverageHighwayMPG']
                         }) - 1 , d3.max(values, (item) => {
-                            return item['Year']
+                            return item['AverageHighwayMPG']
                         }) + 1])
                         .range([padding, height-padding])
 
@@ -50,16 +50,16 @@ let drawPoints = () => {
             .attr('class', 'dot')
             .attr('r', '5')
             .attr('data-xvalue', (item) => {
-                return item['Year']
+                return item['AverageCityMPG']
             })
             .attr('data-yvalue', (item) => {
-                return new Date(item['Seconds'] * 1000)
+                return new item['AverageHighwayMPG']
             })
           .attr('cx', (item) => {
-              return xScale(item['Year'])
+              return xScale(item['AverageCityMPG'])
           })         
             .attr('cy', (item) => {
-                return yScale(new Date(item['Seconds'] * 1000))
+                return yScale(item['AverageHighwayMPG'])
             })
             .attr('fill', (item) => {
                 if(item['URL'] === ""){
@@ -72,13 +72,9 @@ let drawPoints = () => {
                 tooltip.transition()
                     .style('visibility', 'visible')
                 
-                if(item['Doping'] != ""){
-                    tooltip.text(item['Year'] + ' - ' + item['Name'] + ' - ' + item['Time'] + ' - ' + item['Doping'])
-                }else{
-                    tooltip.text(item['Year'] + ' - ' + item['Name'] + ' - ' + item['Time'] + ' - ' + 'No Allegations')
-                }
+                tooltip.text(item['Make'] + ' - ' + item['Fuel'] + ' - ' + item['EngineCylinders'])
                 
-                tooltip.attr('data-year', item['Year'])
+                tooltip.attr('AverageHighwayMPG', item['AverageHighwayMPG'])
             })
             .on('mouseout', (item) => {
                 tooltip.transition()
@@ -93,7 +89,7 @@ let generateAxes = () => {
                 
 
     yAxis = d3.axisLeft(yScale)
-                .tickFormat(d3.timeFormat('%M:%S'))
+                .tickFormat(d3.format('d'))
 
 
     svg.append('g')
