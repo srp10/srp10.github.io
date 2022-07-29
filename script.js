@@ -1,4 +1,4 @@
-let url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json'
+let url = 'cars2017.json'
 let req = new XMLHttpRequest()
 
 let values =[]
