@@ -9,8 +9,8 @@ let yScale
 let xAxis
 let yAxis
 
-let width = 600
-let height = 400
+let width = 865
+let height = 500
 let padding = 40
 
 let svg = d3.select('svg')
