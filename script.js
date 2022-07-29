@@ -1,3 +1,4 @@
+```jsx
 let url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json'
 let req = new XMLHttpRequest()
 
@@ -95,7 +96,6 @@ let generateAxes = () => {
     yAxis = d3.axisLeft(yScale)
                 .tickFormat(d3.timeFormat('%M:%S'))
 
-
     svg.append('g')
         .call(xAxis)
         .attr('id', 'x-axis')
@@ -107,7 +107,6 @@ let generateAxes = () => {
         .attr('transform','translate(' + padding + ', 0)')
 }
 
-
 req.open('GET', url, true)
 req.onload = () => {
     values = JSON.parse(req.responseText)
@@ -118,3 +117,4 @@ req.onload = () => {
     generateAxes()
 }
 req.send()
+```
