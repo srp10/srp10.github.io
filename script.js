@@ -62,23 +62,13 @@ let drawPoints = () => {
                 return yScale(item['AverageHighwayMPG'])
             })
             .attr('fill', (item) => {
-                if(item['URL'] === ""){
                     return 'lightgreen'
-                }else{
-                    return 'orange'
-                }
             })
             .on('mouseover', (item) => {
                 tooltip.transition()
                     .style('visibility', 'visible')
                 
-                if(item['Doping'] != ""){
-                    tooltip.text(item['Year'] + ' - ' + item['Name'] + ' - ' + item['Time'] + ' - ' + item['Doping'])
-                }else{
-                    tooltip.text(item['Year'] + ' - ' + item['Name'] + ' - ' + item['Time'] + ' - ' + 'No Allegations')
-                }
-                
-                tooltip.attr('data-year', item['Year'])
+                tooltip.attr('make', item['Make'])
             })
             .on('mouseout', (item) => {
                 tooltip.transition()
