@@ -20,7 +20,7 @@ let generateScales = () => {
     
     xScale = d3.scaleLinear()
                         .domain([10, 600])
-                        .range([padding, width-padding])
+                        .range([0, 200])
 
     yScale = d3.scaleLinear()
                         .domain([10, 600])
