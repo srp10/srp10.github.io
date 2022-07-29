@@ -55,7 +55,7 @@ let drawPoints = () => {
             .attr('data-yvalue', (item) => {
                 return new item['AverageHighwayMPG']
             })
-          .attr('cx', (item) => {
+            .attr('cx', (item) => {
               return xScale(item['AverageCityMPG'])
           })         
             .attr('cy', (item) => {
