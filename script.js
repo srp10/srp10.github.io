@@ -50,16 +50,16 @@ let drawPoints = () => {
             .attr('class', 'dot')
             .attr('r', '5')
             .attr('data-xvalue', (item) => {
-                return item['Year']
+                return item['AverageCityMPG']
             })
             .attr('data-yvalue', (item) => {
-                return new Date(item['Seconds'] * 1000)
+                return item['AverageHighwayMPG']
             })
           .attr('cx', (item) => {
-              return xScale(item['Year'])
+              return xScale(item['AverageCityMPG'])
           })         
             .attr('cy', (item) => {
-                return yScale(new Date(item['Seconds'] * 1000))
+                return yScale(item['AverageHighwayMPG'])
             })
             .attr('fill', (item) => {
                 if(item['URL'] === ""){
@@ -89,11 +89,11 @@ let drawPoints = () => {
 let generateAxes = () => {
 
     xAxis = d3.axisBottom(xScale)
-                .tickFormat(d3.format('d'))
+                .tickFormat(d3.format("~s"))
                 
 
     yAxis = d3.axisLeft(yScale)
-                .tickFormat(d3.timeFormat('%M:%S'))
+                .tickFormat(d3.format("~s"))
 
 
     svg.append('g')
