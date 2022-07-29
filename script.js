@@ -19,11 +19,7 @@ let tooltip = d3.select('#tooltip')
 let generateScales = () => {
     
     xScale = d3.scaleLinear()
-                        .domain([d3.min(values, (item) => {
-                            return item['AverageCityMPG']
-                        }) - 1 , d3.max(values, (item) => {
-                            return item['AverageCityMPG']
-                        }) + 100])
+                        .domain([10, 600])
                         .range([padding, width-padding])
 
     yScale = d3.scaleLinear()
@@ -31,7 +27,7 @@ let generateScales = () => {
                             return item['AverageHighwayMPG']
                         }), d3.max(values, (item) => {
                             return item['AverageHighwayMPG']
-                        }) + 100])
+                        })])
                         .range([padding, height-padding])
 
 }
