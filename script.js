@@ -18,12 +18,20 @@ let tooltip = d3.select('#tooltip')
 
 let generateScales = () => {
     
-    xScale = d3.scaleLinear()
-                        .domain([10, 600])
-                        .range([0, 200])
+    xScale = d3.scaleLog()
+                        .domain([d3.min(values, (item) => {
+                            return item['AverageCityMPG']
+                        }) - 1 , d3.max(values, (item) => {
+                            return item['AverageCityMPG']
+                        }) + 1])
+                        .range([padding, width-padding])
 
-    yScale = d3.scaleLinear()
-                        .domain([10, 600])
+    yScale = d3.scaleLog()
+                        .domain([d3.min(values, (item) => {
+                            return item['AverageHighwayMPG']
+                        }), d3.max(values, (item) => {
+                            return item['AverageHighwayMPG']
+                        })])
                         .range([padding, height-padding])
 
 }
@@ -54,13 +62,23 @@ let drawPoints = () => {
                 return yScale(item['AverageHighwayMPG'])
             })
             .attr('fill', (item) => {
+                if(item['URL'] === ""){
                     return 'lightgreen'
+                }else{
+                    return 'orange'
+                }
             })
             .on('mouseover', (item) => {
                 tooltip.transition()
                     .style('visibility', 'visible')
                 
-                tooltip.attr('make', item['Make'])
+                if(item['Doping'] != ""){
+                    tooltip.text(item['Year'] + ' - ' + item['Name'] + ' - ' + item['Time'] + ' - ' + item['Doping'])
+                }else{
+                    tooltip.text(item['Year'] + ' - ' + item['Name'] + ' - ' + item['Time'] + ' - ' + 'No Allegations')
+                }
+                
+                tooltip.attr('data-year', item['Year'])
             })
             .on('mouseout', (item) => {
                 tooltip.transition()
