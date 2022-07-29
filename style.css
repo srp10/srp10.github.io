@@ -51,7 +51,7 @@ button:hover {
     display: flex;
     align-items: left;
     justify-content: left;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
     transition: all 0.7s;
     color: white;
@@ -71,7 +71,6 @@ button:hover {
 .four{
     background-color: limegreen;
 }
-
 
 svg{
     background-color: rgb(56, 58, 74);
@@ -100,19 +99,19 @@ g{
     width: auto;
     margin-top: 5px;
     color: rgb(56, 58, 74);
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 5px;
 }
 
 #legend{
     margin-top: 5px;
     color: rgb(56, 58, 74);
-    font-size: 18px;
-    text-align: center;
+    font-size: 18   px;
+    text-align: left;
 }
 
 #title{
-    font-size: 28px;
+    font-size: 20px;
     fill: rgb(221, 221, 221);
     text-transform: uppercase;
 }
