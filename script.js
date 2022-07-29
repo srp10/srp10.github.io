@@ -32,7 +32,7 @@ let generateScales = () => {
                         }) - 1 , d3.max(values, (item) => {
                             return item['AverageHighwayMPG']
                         }) + 1])
-                        .range([padding, height-padding])
+                        .range([height-padding, padding])
 
 }
 
