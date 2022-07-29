@@ -9,31 +9,36 @@
 </head>
 <body>
     <div class="container">
-        <svg id='canvas'>
-            <text id='title' y='20' x='150'>Fuel Efficiency of Different Cars</text>
-        </svg>
-        <div id='legend'>
-            Avg City MPG (x) vs Avg Highway MPG (Y) </br />
-        </div>
-        <div id='tooltip'>
+        <div class="pages">
+            <div class="page one">
+                <svg id='canvas'>
+                    <text id='title' y='20' x='150'>Fuel Efficiency of Different Cars</text>
+                </svg>
+                <div id='legend'>
+                    Avg City MPG (x) vs Avg Highway MPG (Y) </br />
+                </div>
+                <div id='tooltip'>
 
-        </div>
-        <div>
-            <button onClick="slide('next')">Next</button>
-        </div>
+                </div>
+                <div>
+                    <button onClick="slide('next')">Next</button>
+                </div>
+            </div>
+            <div class="page two">
+                <svg id='canvas two'>
+                    <text id='title' y='20' x='150'>Fuel Efficiency of Different Cars</text>
+                </svg>
+                <div id='legend'>
+                    Avg City MPG (x) vs Avg Highway MPG (Y) </br />
+                </div>
+                <div id='tooltip'>
 
-        <svg id='canvas two'>
-            <text id='title' y='20' x='150'>Fuel Efficiency of Different Cars</text>
-        </svg>
-        <div id='legend'>
-            Avg City MPG (x) vs Avg Highway MPG (Y) </br />
-        </div>
-        <div id='tooltip'>
-
-        </div>
-        <div>
-            <button onClick="slide('prev')">Previous</button>
-            <button onClick="slide('next')">Next</button>
+                </div>
+                <div>
+                    <button onClick="slide('prev')">Previous</button>
+                    <button onClick="slide('next')">Next</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
