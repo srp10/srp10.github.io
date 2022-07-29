@@ -49,7 +49,7 @@ let drawPoints = () => {
             .append('circle')
             .attr('class', 'dot')
             .attr('r', (item) => {
-                return item['EngineCylinder']
+                return item['EngineCylinders']
             })
             .attr('data-xvalue', (item) => {
                 return item['AverageCityMPG']
