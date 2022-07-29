@@ -64,7 +64,7 @@ let drawPoints = () => {
                 return yScale(item['AverageHighwayMPG'])
             })
             .attr('fill', (item) => {
-                if(item['EngineCylinders'] >= 6){
+                if(item['Fuel'] === 'Gasoline'){
                     return 'lightgreen'
                 }else{
                     return 'orange'
