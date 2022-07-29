@@ -23,7 +23,7 @@ let generateScales = () => {
                             return item['AverageCityMPG']
                         }) - 1 , d3.max(values, (item) => {
                             return item['AverageCityMPG']
-                        }) + 1])
+                        }) + 100])
                         .range([padding, width-padding])
 
     yScale = d3.scaleLinear()
@@ -31,7 +31,7 @@ let generateScales = () => {
                             return item['AverageHighwayMPG']
                         }), d3.max(values, (item) => {
                             return item['AverageHighwayMPG']
-                        })])
+                        }) + 100])
                         .range([padding, height-padding])
 
 }
