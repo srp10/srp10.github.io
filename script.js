@@ -113,5 +113,6 @@ req.onload = () => {
     generateScales()
     drawPoints()
     generateAxes()
+    slides = svg_slides(svg,1500);
 }
 req.send()
