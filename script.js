@@ -20,9 +20,9 @@ let generateScales = () => {
     
     xScale = d3.scaleLog()
                         .domain([d3.min(values, (item) => {
-                            return item['AverageCityMPG'] * 1000
+                            return item['AverageCityMPG']
                         }) - 1 , d3.max(values, (item) => {
-                            return item['AverageCityMPG'] * 1000
+                            return item['AverageCityMPG']
                         }) + 1])
                         .range([padding, width-padding])
 
