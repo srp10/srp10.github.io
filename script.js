@@ -1,4 +1,4 @@
-let url = 'cars2017.json'
+let url = 'https://github.com/srp10/srp10.github.io/blob/main/cars2017.json'
 let req = new XMLHttpRequest()
 
 let values =[]
