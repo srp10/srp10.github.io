@@ -1,93 +1,120 @@
-d3.csv('world_data-XHzgJ.csv', function (data) {
-    // Variables
-    var body = d3.select('body')
-      var margin = { top: 50, right: 50, bottom: 50, left: 50 }
-      var h = 500 - margin.top - margin.bottom
-      var w = 500 - margin.left - margin.right
-      var formatPercent = d3.format('.2%')
-      // Scales
-    var colorScale = d3.scale.category20()
-    var xScale = d3.scale.linear()
-      .domain([
-          d3.min([0,d3.min(data,function (d) { return d.asd })]),
-          d3.max([0,d3.max(data,function (d) { return d.asd })])
-          ])
-      .range([0,w])
-    var yScale = d3.scale.linear()
-      .domain([
-          d3.min([0,d3.min(data,function (d) { return d.aror })]),
-          d3.max([0,d3.max(data,function (d) { return d.aror })])
-          ])
-      .range([h,0])
-      // SVG
-      var svg = body.append('svg')
-          .attr('height',h + margin.top + margin.bottom)
-          .attr('width',w + margin.left + margin.right)
-        .append('g')
-          .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
-      // X-axis
-      var xAxis = d3.svg.axis()
-        .scale(xScale)
-        .tickFormat(formatPercent)
-        .ticks(5)
-        .orient('bottom')
-    // Y-axis
-      var yAxis = d3.svg.axis()
-        .scale(yScale)
-        .tickFormat(formatPercent)
-        .ticks(5)
-        .orient('left')
-    // Circles
-    var circles = svg.selectAll('circle')
-        .data(data)
-        .enter()
-      .append('circle')
-        .attr('cx',function (d) { return xScale(d.asd) })
-        .attr('cy',function (d) { return yScale(d.aror) })
-        .attr('r','10')
-        .attr('stroke','black')
-        .attr('stroke-width',1)
-        .attr('fill',function (d,i) { return colorScale(i) })
-        .on('mouseover', function () {
-          d3.select(this)
-            .transition()
-            .duration(500)
-            .attr('r',20)
-            .attr('stroke-width',3)
-        })
-        .on('mouseout', function () {
-          d3.select(this)
-            .transition()
-            .duration(500)
-            .attr('r',10)
-            .attr('stroke-width',1)
-        })
-      .append('title') // Tooltip
-        .text(function (d) { return d.variable +
-                             '\nReturn: ' + formatPercent(d.aror) +
-                             '\nStd. Dev.: ' + formatPercent(d.asd) })
-    // X-axis
+let url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json'
+let req = new XMLHttpRequest()
+
+let values =[]
+
+let xScale
+let yScale
+
+let xAxis
+let yAxis
+
+let width = 800
+let height = 600
+let padding = 40
+
+let svg = d3.select('svg')
+let tooltip = d3.select('#tooltip')
+
+let generateScales = () => {
+    
+    xScale = d3.scaleLinear()
+                        .domain([d3.min(values, (item) => {
+                            return item['Year']
+                        }) - 1 , d3.max(values, (item) => {
+                            return item['Year']
+                        }) + 1])
+                        .range([padding, width-padding])
+
+    yScale = d3.scaleTime()
+                        .domain([d3.min(values, (item) => {
+                            return new Date(item['Seconds'] * 1000)
+                        }), d3.max(values, (item) => {
+                            return new Date(item['Seconds'] * 1000)
+                        })])
+                        .range([padding, height-padding])
+
+}
+
+let drawCanvas = () => {
+    svg.attr('width', width)
+    svg.attr('height', height)
+}
+
+let drawPoints = () => {
+
+    svg.selectAll('circle')
+            .data(values)
+            .enter()
+            .append('circle')
+            .attr('class', 'dot')
+            .attr('r', '5')
+            .attr('data-xvalue', (item) => {
+                return item['Year']
+            })
+            .attr('data-yvalue', (item) => {
+                return new Date(item['Seconds'] * 1000)
+            })
+          .attr('cx', (item) => {
+              return xScale(item['Year'])
+          })         
+            .attr('cy', (item) => {
+                return yScale(new Date(item['Seconds'] * 1000))
+            })
+            .attr('fill', (item) => {
+                if(item['URL'] === ""){
+                    return 'lightgreen'
+                }else{
+                    return 'orange'
+                }
+            })
+            .on('mouseover', (item) => {
+                tooltip.transition()
+                    .style('visibility', 'visible')
+                
+                if(item['Doping'] != ""){
+                    tooltip.text(item['Year'] + ' - ' + item['Name'] + ' - ' + item['Time'] + ' - ' + item['Doping'])
+                }else{
+                    tooltip.text(item['Year'] + ' - ' + item['Name'] + ' - ' + item['Time'] + ' - ' + 'No Allegations')
+                }
+                
+                tooltip.attr('data-year', item['Year'])
+            })
+            .on('mouseout', (item) => {
+                tooltip.transition()
+                    .style('visibility', 'hidden')
+            })
+}
+
+let generateAxes = () => {
+
+    xAxis = d3.axisBottom(xScale)
+                .tickFormat(d3.format('d'))
+                
+
+    yAxis = d3.axisLeft(yScale)
+                .tickFormat(d3.timeFormat('%M:%S'))
+
+
     svg.append('g')
-        .attr('class','axis')
-        .attr('transform', 'translate(0,' + h + ')')
         .call(xAxis)
-      .append('text') // X-axis Label
-        .attr('class','label')
-        .attr('y',-10)
-        .attr('x',w)
-        .attr('dy','.71em')
-        .style('text-anchor','end')
-        .text('Annualized Standard Deviation')
-    // Y-axis
+        .attr('id', 'x-axis')
+        .attr('transform', 'translate(0, ' + (height-padding) +')')
+
     svg.append('g')
-        .attr('class', 'axis')
         .call(yAxis)
-      .append('text') // y-axis Label
-        .attr('class','label')
-        .attr('transform','rotate(-90)')
-        .attr('x',0)
-        .attr('y',5)
-        .attr('dy','.71em')
-        .style('text-anchor','end')
-        .text('Annualized Return')
-  })
+        .attr('id', 'y-axis')
+        .attr('transform','translate(' + padding + ', 0)')
+}
+
+
+req.open('GET', url, true)
+req.onload = () => {
+    values = JSON.parse(req.responseText)
+    console.log(values)
+    drawCanvas()
+    generateScales()
+    drawPoints()
+    generateAxes()
+}
+req.send()
