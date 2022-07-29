@@ -1,4 +1,4 @@
-```jsx
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 *{
     font-family: 'Source Sans Pro', sans-serif;
@@ -60,4 +60,3 @@ g{
     fill: rgb(221, 221, 221);
     text-transform: uppercase;
 }
-```
