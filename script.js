@@ -26,7 +26,7 @@ let generateScales = () => {
                         }) + 1])
                         .range([padding, width-padding])
 
-    yScale = d3.scaleLog()
+    yScale = d3.scaleTime()
                         .domain([d3.min(values, (item) => {
                             return item['AverageHighwayMPG']
                         }), d3.max(values, (item) => {
