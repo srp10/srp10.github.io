@@ -51,7 +51,7 @@ let drawPoints = () => {
             .append('circle')
             .attr('class', 'dot')
             .attr('r', (item) => {
-                return item['EngineCylinders']
+                return (item['EngineCylinders']+15)
             })
             .attr('data-xvalue', (item) => {
                 return item['AverageCityMPG']
@@ -68,6 +68,8 @@ let drawPoints = () => {
             .attr('fill', (item) => {
                 if(item['Fuel'] === 'Gasoline'){
                     return 'lightgreen'
+                }else if (item['Fuel'] === 'Electricity') {
+                    return 'red'
                 }else{
                     return 'orange'
                 }
@@ -139,7 +141,7 @@ let drawPoints2 = () => {
             .append('circle')
             .attr('class', 'dot')
             .attr('r', (item) => {
-                return item['EngineCylinders']
+                return (item['EngineCylinders']+15)
             })
             .attr('data-xvalue', (item) => {
                 return item['EngineCylinders']
@@ -156,6 +158,8 @@ let drawPoints2 = () => {
             .attr('fill', (item) => {
                 if(item['Fuel'] === 'Gasoline'){
                     return 'lightgreen'
+                }else if(item['Fuel'] === 'Electricity') {
+                    return 'red'
                 }else{
                     return 'orange'
                 }
