@@ -203,15 +203,15 @@ let generateAxes2 = () => {
 
 let generateScales3= () => {
     
-    xScale = d3.scaleLog()
+    xScale = d3.scaleLinear()
                         .domain([d3.min(values, (item) => {
-                            return item['AverageCityMPG']
+                            return item['EngineCylinders']
                         }) - 1 , d3.max(values, (item) => {
-                            return item['AverageCityMPG']
+                            return item['EngineCylinders']
                         }) + 1])
                         .range([padding, width-padding])
 
-    yScale = d3.scaleLog()
+    yScale = d3.scaleLinear()
                         .domain([d3.min(values, (item) => {
                             return item['AverageHighwayMPG']
                         }) - 1 , d3.max(values, (item) => {
@@ -237,13 +237,13 @@ let drawPoints3 = () => {
                 return (item['EngineCylinders']+6)
             })
             .attr('data-xvalue', (item) => {
-                return item['AverageCityMPG']
+                return item['EngineCylinders']
             })
             .attr('data-yvalue', (item) => {
-                return item['AverageHighwayMPG']
+                return item['EngineCylinders']
             })
             .attr('cx', (item) => {
-              return xScale(item['AverageCityMPG'])
+              return xScale(item['EngineCylinders'])
           })         
             .attr('cy', (item) => {
                 return yScale(item['AverageHighwayMPG'])
@@ -251,7 +251,7 @@ let drawPoints3 = () => {
             .attr('fill', (item) => {
                 if(item['Fuel'] === 'Gasoline'){
                     return 'lightgreen'
-                }else if (item['Fuel'] === 'Electricity') {
+                }else if(item['Fuel'] === 'Electricity') {
                     return 'red'
                 }else{
                     return 'orange'
