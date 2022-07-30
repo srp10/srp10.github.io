@@ -13,7 +13,7 @@ let width = 865
 let height = 500
 let padding = 40
 
-let svg = d3.select('svg')
+let svg = d3.select('#canvas1')
 let tooltip = d3.select('#tooltip')
 
 let generateScales = () => {
