@@ -57,7 +57,7 @@ button:hover {
     color: white;
 }
 .one{
-    background: orangered;
+    background: dodgerblue
 }
 
 .two{
@@ -65,7 +65,7 @@ button:hover {
 }
 
 .three{
-    background-color: indigo;
+    background-color: dodgerblue;
 }
 
 .four{
@@ -111,7 +111,7 @@ g{
 }
 
 #title{
-    font-size: 20px;
+    font-size: 15px;
     fill: rgb(221, 221, 221);
     text-transform: uppercase;
 }
