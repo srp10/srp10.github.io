@@ -24,26 +24,28 @@ const annotations = [
     {
       note: {
         label: "Most cars still run on gasoline",
-        title: "Gasoline model cars still very popular"
+        title: "Gasoline model cars still very popular",
+        wrap: 200,
+        align: "centre"
       },
       x: 150,
-      y: 350,
-      dy: -107,
-      dx: 62
+      y: 400,
+      dy: -147,
+      dx: 32
     },{
       note: {
         label: "Fewer diesel cars in the market with varying performance",
-        title: "Diesel Car models seem to be a dying species",
-        wrap: 150,
+        title: "Diesel Car models seem to be going extinct slowly",
+        wrap: 250,
         align: "left"
       },
       connector: {
         end: "arrow" // 'dot' also available
       },
       x: 380,
-      y: 260,
-      dy: -105,
-      dx: 62
+      y: 270,
+      dy: -145,
+      dx: 2
     },{
       //below in makeAnnotations has type set to d3.annotationLabel
       //you can add this type value below to override that default
@@ -51,7 +53,7 @@ const annotations = [
       note: {
         label: "All the electric cars in the market have over 70 MPG",
         title: "Electric cars have the best fuel efficiency",
-        wrap: 190
+        wrap: 300
       },
       //settings for the subject, in this case the circle radius
       subject: {
@@ -73,17 +75,17 @@ const annotations2 = [
         note: {
             label: "Not surprisingly, larger cars with more engine cylinders perform poorly on fuel efficiency",
             title: "Larger circles indicate larger car models",
-            wrap: 150
+            wrap: 350
         },
         connector: {
             end: "dot",
             type: "curve",
             //can also add a curve type, e.g. curve: d3.curveStep
-            points: [[100, 14],[190, 52]]
+            points: [[0, 0],[0, 0]]
         },
-        x: 550,
+        x: 540,
         y: 450,
-        dy: -137,
+        dy: -287,
         dx: 162
     },{
         //below in makeAnnotations has type set to d3.annotationLabel
@@ -113,7 +115,7 @@ const annotations3 = [
         note: {
             label: "There might be other factors at play but definitely the market is growing. All the major players seem to be getting in the act",
             title: "Is fuel efficiency enough for customers to make a move to electric vehicles?",
-            wrap: 150
+            wrap: 450
         },
         connector: {
             end: "dot",
@@ -121,8 +123,8 @@ const annotations3 = [
             //can also add a curve type, e.g. curve: d3.curveStep
             points: [[0, 0],[0, 0]]
         },
-        x: 250,
-        y: 350,
+        x: 100,
+        y: 200,
         dy: -37,
         dx: 462
     }].map(function(d2){ d2.color = "#E8336D"; return d2})
