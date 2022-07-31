@@ -90,17 +90,15 @@ const annotations2 = [
     },{
         //below in makeAnnotations has type set to d3.annotationLabel
         //you can add this type value below to override that default
-        type: d3.annotationCalloutCircle,
+        type: d3.annotationCalloutElbow,
         note: {
           label: "",
           title: "Electric cars have the best fuel efficiency",
           wrap: 190
         },
         //settings for the subject, in this case the circle radius
-        subject: {
-          radius: 40
-        },
-        x: 70,
+        
+        x: 100,
         y: 140,
         dy: 135,
         dx: 144
