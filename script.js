@@ -63,15 +63,15 @@ const annotations = [
       dx: -44
     }].map(function(d){ d.color = "#E8336D"; return d})
 
-    const makeAnnotations = d3.annotation()
-      .type(d3.annotationLabel)
-      .annotations(annotations)
+const makeAnnotations = d3.annotation()
+                            .type(d3.annotationLabel)
+                            .annotations(annotations)
 
 
 const annotations2 = [
     {
         note: {
-            label: "Unsurprisingly, larger cars with more engine cylinders perform poorly on fuel efficiency",
+            label: "Not surprisingly, larger cars with more engine cylinders perform poorly on fuel efficiency",
             title: "Larger circles indicate larger car models",
             wrap: 150
         },
@@ -81,15 +81,55 @@ const annotations2 = [
             //can also add a curve type, e.g. curve: d3.curveStep
             points: [[100, 14],[190, 52]]
         },
-        x: 350,
-        y: 150,
-        dy: 137,
-        dx: 262
-    }].map(function(d){ d.color = "#E8336D"; return d})
+        x: 550,
+        y: 450,
+        dy: -137,
+        dx: 162
+    },{
+        //below in makeAnnotations has type set to d3.annotationLabel
+        //you can add this type value below to override that default
+        type: d3.annotationCalloutCircle,
+        note: {
+          label: "",
+          title: "Electric cars have the best fuel efficiency",
+          wrap: 190
+        },
+        //settings for the subject, in this case the circle radius
+        subject: {
+          radius: 120
+        },
+        x: 70,
+        y: 140,
+        dy: 135,
+        dx: 144
+    }].map(function(d1){ d1.color = "#E8336D"; return d1})
     
-    const makeAnnotations2 = d3.annotation()
-        .type(d3.annotationLabel)
-        .annotations(annotations2)
+const makeAnnotations2 = d3.annotation()
+                            .type(d3.annotationLabel)
+                            .annotations(annotations2)
+
+const annotations3 = [
+    {
+        note: {
+            label: "There might be other factors at play but definitely the market is growing. All the major players seem to be getting in the act",
+            title: "Is fuel efficiency enough for customers to make a move to electric vehicles?",
+            wrap: 150
+        },
+        connector: {
+            end: "dot",
+            type: "curve",
+            //can also add a curve type, e.g. curve: d3.curveStep
+            points: [[0, 0],[0, 0]]
+        },
+        x: 250,
+        y: 350,
+        dy: -37,
+        dx: 462
+    }].map(function(d2){ d2.color = "#E8336D"; return d2})
+    
+const makeAnnotations3 = d3.annotation()
+                            .type(d3.annotationLabel)
+                            .annotations(annotations3)
 
 let generateScales = () => {
     
@@ -275,8 +315,8 @@ let generateAxes2 = () => {
         .attr('id', 'y-axis')
         .attr('transform','translate(' + padding + ', 0)')
 
-    d3.select("svgb")
-        .append("g")
+    //d3.select("svgb")
+    svgb.append("g")
         .attr("class", "annotation-group")
         .call(makeAnnotations2)
 }
@@ -369,6 +409,10 @@ let generateAxes3 = () => {
         .call(yAxis)
         .attr('id', 'y-axis')
         .attr('transform','translate(' + padding + ', 0)')
+
+    svgc.append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations3)
 }
 
 
@@ -398,6 +442,7 @@ req.onload = () => {
     generateScales2()
     drawPoints2()
     generateAxes2()
+    console.log(annotations2)
     drawCanvas3()
     generateScales3()
     drawPoints3()
