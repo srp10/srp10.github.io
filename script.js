@@ -98,7 +98,7 @@ const annotations2 = [
         },
         //settings for the subject, in this case the circle radius
         subject: {
-          radius: 120
+          radius: 40
         },
         x: 70,
         y: 140,
@@ -193,7 +193,7 @@ let drawPoints = () => {
                 tooltip.transition()
                     .style('visibility', 'visible')
                 
-                tooltip.text(item['Make'] + ' - ' + item['Fuel'] + ' - ' + item['EngineCylinders'])
+                tooltip.text('Model:' + item['Make'] + '; ' + 'Fuel Type:' + item['Fuel'] + '; ' + 'Engine Cylinders:' + item['EngineCylinders'])
             
             })
             .on('mouseout', (item) => {
@@ -288,7 +288,7 @@ let drawPoints2 = () => {
                 tooltip2.transition()
                     .style('visibility', 'visible')
                 
-                tooltip2.text(item['Make'] + ' - ' + item['Fuel'] + ' - ' + item['EngineCylinders'])
+                tooltip2.text('Model:' + item['Make'] + '; ' + 'Fuel Type:' + item['Fuel'] + '; ' + 'Engine Cylinders:' + item['EngineCylinders'])
             
             })
             .on('mouseout', (item) => {
@@ -383,7 +383,7 @@ let drawPoints3 = () => {
                 tooltip3.transition()
                     .style('visibility', 'visible')
                 
-                tooltip3.text(item['Make'] + ' - ' + item['Fuel'] + ' - ' + item['EngineCylinders'])
+                tooltip3.text('Model:' + item['Make'] + '; ' + 'Fuel Type:' + item['Fuel'] + '; ' + 'Engine Cylinders:' + item['EngineCylinders'])
             
             })
             .on('mouseout', (item) => {
