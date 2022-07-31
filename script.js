@@ -434,15 +434,17 @@ req.open('GET', url, true)
 req.onload = () => {
     values = JSON.parse(req.responseText)
     console.log(values)
+    // Render scene 1 - page 1
     drawCanvas()
     generateScales()
     drawPoints()
     generateAxes()
+    // Render scene 2 - page 2
     drawCanvas2()
     generateScales2()
     drawPoints2()
     generateAxes2()
-    console.log(annotations2)
+    // Render scene 3 - page 3
     drawCanvas3()
     generateScales3()
     drawPoints3()
