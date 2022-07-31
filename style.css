@@ -112,3 +112,7 @@ g{
     fill: rgb(221, 221, 221);
     text-transform: uppercase;
 }
+
+.annotation-note-title, text.title {
+    font-weight: bold;
+  }

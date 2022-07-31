@@ -20,6 +20,76 @@ let tooltip = d3.select('#tooltip')
 let tooltip2 = d3.select('#tooltip2')
 let tooltip3 = d3.select('#tooltip3')
 
+const annotations = [
+    {
+      note: {
+        label: "Most cars still run on gasoline",
+        title: "Gasoline model cars still very popular"
+      },
+      x: 150,
+      y: 350,
+      dy: -107,
+      dx: 62
+    },{
+      note: {
+        label: "Fewer diesel cars in the market with varying performance",
+        title: "Diesel Car models seem to be a dying species",
+        wrap: 150,
+        align: "left"
+      },
+      connector: {
+        end: "arrow" // 'dot' also available
+      },
+      x: 380,
+      y: 260,
+      dy: -105,
+      dx: 62
+    },{
+      //below in makeAnnotations has type set to d3.annotationLabel
+      //you can add this type value below to override that default
+      type: d3.annotationCalloutCircle,
+      note: {
+        label: "All the electric cars in the market have over 70 MPG",
+        title: "Electric cars have the best fuel efficiency",
+        wrap: 190
+      },
+      //settings for the subject, in this case the circle radius
+      subject: {
+        radius: 120
+      },
+      x: 770,
+      y: 100,
+      dy: 235,
+      dx: -44
+    }].map(function(d){ d.color = "#E8336D"; return d})
+
+    const makeAnnotations = d3.annotation()
+      .type(d3.annotationLabel)
+      .annotations(annotations)
+
+
+const annotations2 = [
+    {
+        note: {
+            label: "Unsurprisingly, larger cars with more engine cylinders perform poorly on fuel efficiency",
+            title: "Larger circles indicate larger car models",
+            wrap: 150
+        },
+        connector: {
+            end: "dot",
+            type: "curve",
+            //can also add a curve type, e.g. curve: d3.curveStep
+            points: [[100, 14],[190, 52]]
+        },
+        x: 350,
+        y: 150,
+        dy: 137,
+        dx: 262
+    }].map(function(d){ d.color = "#E8336D"; return d})
+    
+    const makeAnnotations2 = d3.annotation()
+        .type(d3.annotationLabel)
+        .annotations(annotations2)
 
 let generateScales = () => {
     
@@ -94,21 +164,26 @@ let generateAxes = () => {
 
     xAxis = d3.axisBottom(xScale)
                 .tickFormat(d3.format('d'))
-                
 
     yAxis = d3.axisLeft(yScale)
-                .tickFormat(d3.format('d'))
-
+                .tickFormat(d3.format('d'))  
 
     svg.append('g')
         .call(xAxis)
         .attr('id', 'x-axis')
         .attr('transform', 'translate(0, ' + (height-padding) +')')
 
+
     svg.append('g')
         .call(yAxis)
         .attr('id', 'y-axis')
         .attr('transform','translate(' + padding + ', 0)')
+
+    d3.select("svg")
+        .append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations)
+        
 }
 
 let generateScales2 = () => {
@@ -199,6 +274,11 @@ let generateAxes2 = () => {
         .call(yAxis)
         .attr('id', 'y-axis')
         .attr('transform','translate(' + padding + ', 0)')
+
+    d3.select("svgb")
+        .append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations2)
 }
 
 let generateScales3= () => {
