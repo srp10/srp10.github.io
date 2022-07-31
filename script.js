@@ -111,7 +111,7 @@ const makeAnnotations2 = d3.annotation()
 const annotations3 = [
     {
         note: {
-            label: "There might be other factors at play but definitely the market is growing. All the major players seem to be getting in the act",
+            label: "There might be other factors at play but definitely the market is growing. All the major players seem to be getting in the act. These times of high inflation and high oil prices may indeed provide a good reason for customers to relook at their choice of cars.",
             title: "Is fuel efficiency enough for customers to make a move to electric vehicles?",
             wrap: 450
         },
@@ -122,7 +122,7 @@ const annotations3 = [
             points: [[0, 0],[0, 0]]
         },
         x: 100,
-        y: 200,
+        y: 220,
         dy: -37,
         dx: 462
     }].map(function(d2){ d2.color = "#E8336D"; return d2})
@@ -418,8 +418,8 @@ let generateAxes3 = () => {
 
 
 const pages = document.querySelectorAll(".page");
-    const translateAmount = 100; 
-    let translate = 0;
+const translateAmount = 100; 
+let translate = 0;
 
 slide = (direction) => {
         
@@ -451,3 +451,15 @@ req.onload = () => {
     generateAxes3()
 }
 req.send()
+
+
+// References
+//Professor Hart’s lecture slides/notes for Data Visualization 
+//Cars2017 dataset from https://flunky.github.io/cars2017.csv
+//Data Visualization examples on scatterplots: https://www.notion.so/Visualize-Data-with-a-Scatterplot-Graph-f3b277dc35294accb4d42a0358b92009
+//D3 Transitions: https://www.d3indepth.com/transitions/
+//D3 Transitions: https://medium.com/@codefoxx/how-to-create-a-slide-transition-between-separate-pages-with-html-css-and-javascript-bb7a14393d1
+//D3 Transitions: https://css-tricks.com/almanac/properties/t/transform/
+//D3 Annotations: https://d3-annotation.susielu.com/#examples
+//D3 Annotations: https://bl.ocks.org/susielu/a464c24d8b42f0c4d9fafe7b48e9e60a
+
